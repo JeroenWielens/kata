@@ -6,7 +6,7 @@ public class StringCalc {
         StringBuilder negativeNumbersSum = new StringBuilder();
 
         String customDelimiter = "";
-        if (startsWithDoubleSlash(numbers)){
+        if (startsWithDoubleSlash(numbers)) {
             customDelimiter = refactorDelimiter(numbers);
             String[] tempStr = splitTheStringByDelimiter(customDelimiter, "\n");
             customDelimiter = tempStr[0];
@@ -20,6 +20,8 @@ public class StringCalc {
         return sum;
     }
 
+    // wat anders kan je throwen? Als dit expliciet is, laat het dan weg;
+    // throwWhenNegativeNumber
     private void throwExceptionForNegativeNumbers(final StringBuilder negativeNumbersSum) {
         if (negativeNumbersSum.length() != 0) {
             negativeNumbersSum.deleteCharAt(negativeNumbersSum.length() - 1);
@@ -31,6 +33,11 @@ public class StringCalc {
         StringBuilder regex = new StringBuilder(",|\n");
         if (!customDelimiter.isEmpty()) {
             String[] tempDel = splitTheStringByDelimiter(customDelimiter, "]");
+
+//             probeer zoveel mogelijk streams te gebruiken.
+//            List<String> list = Arrays.asList(tempDel);
+//            list.forEach(s -> regex.append("|").append(td.concat("]")))
+
             for (String td : tempDel) {
                 td = td.concat("]");
                 regex.append("|").append(td);
@@ -41,6 +48,16 @@ public class StringCalc {
 
     private int getSum(final StringBuilder negativeNumbersSum, final String[] n1) {
         int sum = 0;
+        //hier is streams ook veel chiller
+        List<String> idk = Arrays.asList(n1);
+        return idk.stream()
+           .filter(s -> !s.isEmpty())
+           .filter(itIsOverOnehousand)
+           .map(s -> {
+               logicx
+           })
+           .collect(toList())
+
         for (String s : n1) {
             if (!s.isEmpty()) {
                 if (itIsOverOnehousand(s)) {

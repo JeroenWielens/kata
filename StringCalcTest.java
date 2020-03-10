@@ -10,22 +10,28 @@ public class StringCalcTest {
 
     StringCalc stringCalc;
 
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     @Before
     public void init() {
         stringCalc = new StringCalc();
     }
 
     @Test
+    // Ik ben gewend om te zeggen shouldHandleEmptyInput()
     public void testAddMethodEmptyInput() {
         Assert.assertEquals(0, stringCalc.add(""));
     }
 
     @Test
+    // shouldHandleSingleInput
     public void testAddMethodSingleInput() {
         Assert.assertEquals(2, stringCalc.add("2"));
     }
 
     @Test
+    // shouldHandleDoubleInput
     public void testAddMethodDoubleInput() {
         Assert.assertEquals(5 ,stringCalc.add("2,3"));
     }
@@ -44,9 +50,6 @@ public class StringCalcTest {
     public void testAddMethodDifferentDilimiter() {
         Assert.assertEquals(3, stringCalc.add("//[;]\n1;2"));
     }
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testAddMethodNegativeNumber() {
